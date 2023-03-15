@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Header Fragments</title>
+</head>
+<body>
+<header class="tech-header header" th:fragment = "header">
+    <div class="container-fluid">
+        <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="tech-index.html"><img th:src="@{/images/version/tech-logo.png}" alt=""></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">Home</a>
+                    </li>
+                    <th:block th:each="category : ${listCategories}">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{'/category/' + ${category.id}}">[[${category.title}]]</a>
+                        </li>
+                    </th:block>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="tech-category-02.html">Videos</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="tech-category-03.html">Reviews</a>-->
+<!--                    </li>-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="tech-contact.html">Contact Us</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-2">
+                    <div sec:authorize="isAnonymous()">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                    </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                Chào, <span sec:authentication="name">default</span>
+                            </a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="fa fa-rss" method="POST" href="/user_logout">
+                                <i class="ti-power-off text-primary"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </div>
+                    
+                    
+                    
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-apple"></i></a>
+                    </li> -->
+                </ul>
+            </div>
+        </nav>
+    </div><!-- end container-fluid -->
+</header><!-- end market-header -->
+</body>
+</html>

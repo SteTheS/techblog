@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <div th:replace = "fragments/head_fragment :: ref"></div>
+</head>
+<body>
+<div id = "wrapper">
+    <header th:insert = "fragments/header_fragment :: header"></header>
+
+    <section class="section first-section">
+        <div class="container-fluid">
+            <div class="masonry-blog clearfix">
+
+                <!-- <div class="first-slot">
+                    <div class="masonry-box post-media">
+                        <img th:src="@{/upload/788x433_banner.jpg}" alt="" class="img-fluid" style="height: 443px, width = 788px">
+                        <div class="shadoweffect">
+                            <div class="shadow-desc">
+                                <div class="blog-meta">
+                                    <span class="bg-orange"><a href="tech-category-01.html" title="">Technology</a></span>
+                                    <h4><a href="tech-single.html" title="">Say hello to real handmade office furniture! Clean & beautiful design</a></h4>
+                                    <small><a href="tech-single.html" title="">24 July, 2017</a></small>
+                                    <small><a href="tech-author.html" title="">by Amanda</a></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div><
+                </div> -->
+                <!-- <div class="second-slot">
+                    <div class="masonry-box post-media">
+                        <img th:src="@{/upload/banner_2.jpg}" alt="" class="img-fluid">
+                        <div class="shadoweffect">
+                            <div class="shadow-desc">
+                                <div class="blog-meta">
+                                    <span class="bg-orange"><a href="tech-category-01.html" title="">Gadgets</a></span>
+                                    <h4><a href="tech-single.html" title="">Do not make mistakes when choosing web hosting</a></h4>
+                                    <small><a href="tech-single.html" title="">03 July, 2017</a></small>
+                                    <small><a href="tech-author.html" title="">by Jessica</a></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <th:block th:each = "post : ${newestPosts}">
+                    <div class="last-slot">
+                        <div class="masonry-box post-media">
+                            <img th:src="@{${post.getImagePath}}" alt="" class="img-fluid">
+                            <div class="shadoweffect">
+                                <div class="shadow-desc">
+                                    <div class="blog-meta">
+                                        <span class="bg-orange"><a href="tech-category-01.html" title="">Technology</a></span>
+                                        <h4><a th:href="@{'/post/' + ${post.id}}" title="">[[${post.title}]]</a></h4>
+                                        <small><a href="@{'/post/' + ${post.id}}" title="">[[${post.createdat}]]</a></small>
+                                        <small><a href="@{'/post/' + ${post.id}}" title="">[[${post.user_id}]]</a></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+
+            </div><!-- end masonry -->
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <div class="page-wrapper">
+                        <div class="blog-top clearfix">
+                            <h4 class="pull-left">Recent News <a href="#"><i class="fa fa-rss"></i></a></h4>
+                        </div><!-- end blog-top -->
+
+                        <div class="blog-list clearfix">
+
+                            <th:block th:each="post : ${listPosts}">
+                                <div class="blog-box row">
+                                    <div class="col-md-4">
+                                        <div class="post-media">
+                                            <a th:href="@{'/post/' + ${post.id}}" title="">
+                                                <img th:src="@{${post.getImagePath}}" alt="" class="img-fluid">
+                                                <div class="hovereffect"></div>
+                                            </a>
+                                        </div><!-- end media -->
+                                    </div><!-- end col -->
+
+                                    <div class="blog-meta big-meta col-md-8">
+                                        <h4><a th:href="@{'/post/' + ${post.id}}" title="">[[${post.title}]]</a></h4>
+<!--                                        <p>[[${post.content}]]</p>-->
+<!--                                        <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">Gadgets</a></small>-->
+                                        <small><a th:href="@{'/post/' + ${post.id}}" title="">[[${post.createdat}]]</a></small>
+                                        <small><a  title="">[[${post.user_id}]]</a></small>
+<!--                                        <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i> 1114</a></small>-->
+                                    </div><!-- end meta -->
+                                </div><!-- end blog-box -->
+                                <hr class="invis">
+                            </th:block>
+
+                        </div><!-- end blog-list -->
+                    </div><!-- end page-wrapper -->
+
+                    <hr class="invis">
+
+                    <!-- Page number -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-start">
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                    <!-- End of Page number -->
+
+                </div><!-- end col -->
+
+                <!-- Side bar -->
+               <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" th:insert="fragments/sidebar :: sidebar"></div>
+                <!-- End of Side bar -->
+                
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </section>
+
+    <div th:insert = "fragments/dmtop :: dmtop"></div>
+    <footer th:insert = "fragments/footer_fragment :: footer"></footer>
+</div>
+</body>
+</html>
