@@ -40,7 +40,7 @@ public class AdminWebSecurityConfig extends WebSecurityConfigurerAdapter {
     //          PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	// 	auth.inMemoryAuthentication().withUser("admin")
     //         .password(encoder.encode("admin")).roles("ADMIN");
-
+    //
 	//      auth.inMemoryAuthentication().withUser("user").password(encoder.encode("admin")).roles("USER");
 	// }
     
@@ -65,12 +65,11 @@ public class AdminWebSecurityConfig extends WebSecurityConfigurerAdapter {
           .deleteCookies("JSESSIONID")
           
           .and()
-          .exceptionHandling()
+          .exceptionHandling()  
           .accessDeniedPage("/403")
           
           .and()
-          .csrf().disable();
-        ;
+          .csrf().disable();;
     }
     
 }
